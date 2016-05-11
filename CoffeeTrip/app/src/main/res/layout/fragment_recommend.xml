@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:background="@mipmap/recommendbackground">
+
+        <EditText
+            android:id="@+id/recommend_search_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="搜索目的地、游记、故事集、用户"
+            android:textColorHint="@android:color/white"
+            android:layout_weight="8"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/selector_search"/>
+        <TextView
+            android:id="@+id/recommend_nearby_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="附近"
+            android:textSize="20sp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:layout_marginTop="7dp"
+            android:textColor="@android:color/white"/>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/item_recyclephoto"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recommend_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
