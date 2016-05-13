@@ -32,17 +32,16 @@
             android:layout_marginTop="7dp"
             android:textColor="@android:color/white"/>
 
-
     </LinearLayout>
 
-    <include layout="@layout/item_recyclephoto"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recommend_rv"
+    <include layout="@layout/item_recommend_dailystory"/>
+
+    <ListView
+        android:id="@+id/recommend_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </ListView>
 
 </LinearLayout>

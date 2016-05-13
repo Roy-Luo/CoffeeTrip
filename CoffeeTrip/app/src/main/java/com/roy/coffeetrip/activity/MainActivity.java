@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.roy.coffeetrip.R;
 import com.roy.coffeetrip.fragment.CustomizeFragment;
 import com.roy.coffeetrip.fragment.HunterFragment;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         setContentView(R.layout.activity_main);
 
         recommendBtn = (RadioButton) findViewById(R.id.recommend_btn);
