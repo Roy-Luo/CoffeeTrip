@@ -2,4 +2,64 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--activity_main-->
+    <dimen name="activity_framelayout_height">0dp</dimen>
+    <dimen name="activity_radiobutton_width">0dp</dimen>
+    <dimen name="activity_radiobutton_heitht">60dp</dimen>
+
+    <!--fragment_recommend-->
+    <dimen name="activity_fragment_recommend_linearlayout_padding">5dp</dimen>
+    <dimen name="activity_fragment_recommend_edittext_width">0dp</dimen>
+    <dimen name="activity_fragment_recommend_edittext_margin">5dp</dimen>
+    <dimen name="activity_fragment_recommend_edittext_padding">10dp</dimen>
+    <dimen name="activity_fragment_recommend_textview_width">0dp</dimen>
+    <dimen name="activity_fragment_recommend_textview_testSize">20sp</dimen>
+    <dimen name="activity_fragment_recommend_textview_marginTop">7dp</dimen>
+
+    <!--item_content_pic-->
+    <dimen name="item_content_pic_rl_height">200dp</dimen>
+    <dimen name="item_content_pic_iv_height">200dp</dimen>
+    <dimen name="item_content_pic_sdv_width_height">50dp</dimen>
+    <dimen name="item_content_pic_sdv_marginbottom">10dp</dimen>
+    <dimen name="item_content_pic_sdv_marginleft">10dp</dimen>
+    <dimen name="item_content_pic_tv_textSize">20sp</dimen>
+    <dimen name="item_content_pic_tv_marginBottom">35dp</dimen>
+    <dimen name="item_content_pic_tv_marginleft">10dp</dimen>
+    <dimen name="item_content_pic_tv_marginBottom_sec">10dp</dimen>
+    <dimen name="item_content_pic_tv_textSize_sec">15dp</dimen>
+
+    <!--item_content_top-->
+    <dimen name="item_content_top_ll_height">30dp</dimen>
+    <dimen name="item_content_top_tv_width">120dp</dimen>
+
+    <!--item_recommend_dailyStory-->
+    <dimen name="item_recommend_dailyStory_ll_marginBottom">5dp</dimen>
+    <dimen name="item_recommend_dailyStory_iv_marginLeft">10dp</dimen>
+    <dimen name="item_recommend_dailyStory_iv_marginTop">5dp</dimen>
+    <dimen name="item_recommend_dailyStory_tv_textSize">15sp</dimen>
+    <dimen name="item_recommend_dailyStory_tv_margin">5dp</dimen>
+    <dimen name="item_recommend_dailyStory_padding">5dp</dimen>
+
+    <!--item_recommend_content-->
+    <dimen name="item_recommend_content_margin">10dp</dimen>
+    <dimen name="item_recommend_content_sdv_height">200dp</dimen>
+    <dimen name="item_recommend_content_fresco_radius">5dp</dimen>
+    <dimen name="item_recommend_content_tv_marginLeft">20dp</dimen>
+    <dimen name="item_recommend_content_marginTop">20dp</dimen>
+    <dimen name="item_recommend_content_tv_textSize">20sp</dimen>
+    <dimen name="item_recommend_content_img_marginRight">10dp</dimen>
+    <dimen name="item_recommend_content_tv_textSize_sec">10dp</dimen>
+    <dimen name="item_recommend_content_sdv_wid_hei">30dp</dimen>
+    <dimen name="item_recommend_content_marginTop_tv_sec">10dp</dimen>
+    <dimen name="item_recommend_content_sdv_marginLeft">10dp</dimen>
+    <dimen name="item_recommend_content_sdv_marginBottom">10dp</dimen>
+
+    <!--item_recommend_rotate-->
+    <dimen name="item_recommend_rotate_linearLayout_sec_height">200dp</dimen>
+
+    <!--item_hunter_grid_img-->
+    <dimen name="item_hunter_grid_img_wid_hei">150dp</dimen>
+
+
+
 </resources>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:layout_margin="5dp"
+    android:layout_marginBottom="@dimen/item_recommend_dailyStory_ll_marginBottom"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -16,20 +16,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/recommendline"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:padding="5dp"
+            android:layout_marginLeft="@dimen/item_recommend_dailyStory_iv_marginLeft"
+            android:layout_marginTop="@dimen/item_recommend_dailyStory_iv_marginTop"
+            android:padding="@dimen/item_recommend_dailyStory_padding"
             />
         <TextView
             android:id="@+id/recommend_story_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="精彩原创和专题"
-            android:textSize="15sp"
+            android:text="@string/item_recommend_dailyStory_text"
+            android:textSize="@dimen/item_recommend_dailyStory_tv_textSize"
             android:textColor="@android:color/black"
             android:layout_toRightOf="@id/recommend_line_iv"
-            android:layout_margin="5dp"
-            android:padding="5dp"
+            android:layout_margin="@dimen/item_recommend_dailyStory_tv_margin"
+            android:padding="@dimen/item_recommend_dailyStory_padding"
             android:layout_gravity="center_vertical"/>
 
     </RelativeLayout>

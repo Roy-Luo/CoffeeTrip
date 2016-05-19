@@ -1,6 +1,8 @@
 package com.roy.coffeetrip.fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -33,7 +36,7 @@ import java.util.List;
 
 import it.sephiroth.android.library.picasso.Picasso;
 
-public class RecommendFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
+public class RecommendFragment extends BaseFragment implements ViewPager.OnPageChangeListener, AdapterView.OnItemClickListener {
 
     /***********以下是解析实体类集合***********/
     private ArrayList<RecommendRotateBean> rotate;
@@ -59,7 +62,7 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
             if ((System.currentTimeMillis()-lastTime)>5000){
                 // 获得ViewPager当前页
                 int currentIndex = viewPager.getCurrentItem();
-                // 设置ViewPager的页数是当前页自增1
+                // 设置 自增1
                 // 这里要判断,轮播的下一张page不能超过viewpager的count
                 // 否则会崩
                 viewPager.setCurrentItem(++currentIndex);
@@ -79,11 +82,12 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
 
     @Override
     public void initView() {
-        viewPager = (ViewPager) getView().findViewById(R.id.recommend_vp);
-        layout = (LinearLayout) getView().findViewById(R.id.recommend_ll);
         listView = (ListView) getView().findViewById(R.id.recommend_lv);
-        View headView = LayoutInflater.from(mContext).inflate(R.layout.item_recommend_recyclephoto,null);
-        listView.addHeaderView(headView);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_recommend_recyclephoto,null);
+        listView.addHeaderView(view);
+        viewPager = (ViewPager) view.findViewById(R.id.recommend_vp);
+        layout = (LinearLayout) view.findViewById(R.id.recommend_ll);
+        listView.setOnItemClickListener(this);
 
 
     }
@@ -134,6 +138,8 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
             }
         });
         referenceQueue.add(request);
+
+
 
 
         /*************************************************************/
@@ -210,6 +216,14 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
         isRotate = true;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent intent = new Intent();
+
+
+    }
+
 
     // 轮播适配器
     private class MyAdapter extends PagerAdapter{
@@ -241,7 +255,6 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
 
             View view = LayoutInflater.from(context).inflate(R.layout.item_recommend_recyclephoto_photo,null);
             ImageView imageView = (ImageView) view.findViewById(R.id.item_recommend_photo_img);
-//            Log.d("111",rotate.get(position).getImage_url());
             Picasso.with(context).load(rotate.get(position%rotate.size()).getImage_url()).into(imageView);
             container.addView(view);
             return view;

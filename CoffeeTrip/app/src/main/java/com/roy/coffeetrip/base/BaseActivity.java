@@ -26,7 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initData();
 
     // 加载组件的方法
-    public abstract int initView();
+    public abstract void initView();
 
     // 这个方法使组件实例化不需要转型
     // 使用方法 : TextView tv = bindView(R.id.tv);

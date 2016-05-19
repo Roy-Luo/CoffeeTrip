@@ -9,7 +9,7 @@
     <FrameLayout
     android:id="@+id/recommend_frame"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
+    android:layout_height="@dimen/activity_framelayout_height"
     android:layout_weight="9">
 
 </FrameLayout>
@@ -19,40 +19,25 @@
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/recommend_btn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/activity_main"
             android:checked="true"
             android:background="@drawable/selector_recommend"/>
         <RadioButton
             android:id="@+id/hunter_btn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/activity_main"
             android:background="@drawable/selector_hunter"/>
         <RadioButton
             android:id="@+id/new_btn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/activity_main"
             android:background="@drawable/selector_new"
             />
         <RadioButton
             android:id="@+id/customize_btn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/activity_main"
             android:background="@drawable/selector_customize"/>
         <RadioButton
             android:id="@+id/myself_btn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/activity_main"
             android:background="@drawable/selector_myself"/>
 
     </RadioGroup>

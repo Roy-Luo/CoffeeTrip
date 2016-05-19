@@ -1,5 +1,7 @@
 package com.roy.coffeetrip.utill;
 
+import android.util.Log;
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -28,8 +30,16 @@ public class GsonRequest<T> extends Request<T> {
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
             String data = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+
+            Log.d("GsonRequest", data);
+            if(data.startsWith("[")){
+
+                data = "{array:" + data + "}";
+            }
+
             return Response.success(gson.fromJson(data,tClass),
                     HttpHeaderParser.parseCacheHeaders(response));
+
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         }

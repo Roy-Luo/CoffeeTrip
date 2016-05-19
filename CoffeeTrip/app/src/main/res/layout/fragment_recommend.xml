@@ -2,40 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_light"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@mipmap/recommendbackground"
         android:orientation="horizontal"
-        android:padding="5dp"
-        android:background="@mipmap/recommendbackground">
+        android:padding="@dimen/activity_fragment_recommend_linearlayout_padding">
 
         <EditText
             android:id="@+id/recommend_search_et"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/activity_fragment_recommend_edittext_width"
             android:layout_height="wrap_content"
-            android:hint="搜索目的地、游记、故事集、用户"
-            android:textColorHint="@android:color/white"
+            android:layout_margin="@dimen/activity_fragment_recommend_edittext_margin"
             android:layout_weight="8"
-            android:layout_margin="5dp"
-            android:padding="10dp"
-            android:background="@drawable/selector_search"/>
+            android:background="@drawable/selector_search"
+            android:hint="@string/fragment_recommend_hint"
+            android:padding="@dimen/activity_fragment_recommend_edittext_padding"
+            android:textColorHint="@color/color_white" />
+
         <TextView
             android:id="@+id/recommend_nearby_tv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/activity_fragment_recommend_textview_width"
             android:layout_height="wrap_content"
-            android:text="附近"
-            android:textSize="20sp"
+            android:layout_marginTop="@dimen/activity_fragment_recommend_textview_marginTop"
             android:layout_weight="2"
             android:gravity="center"
-            android:layout_marginTop="7dp"
-            android:textColor="@android:color/white"/>
+            android:text="@string/fragment_recommend_text"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_fragment_recommend_textview_testSize" />
 
     </LinearLayout>
 
-
-    <include layout="@layout/item_recommend_dailystory"/>
 
     <ListView
         android:id="@+id/recommend_lv"

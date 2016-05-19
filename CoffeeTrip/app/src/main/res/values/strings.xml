@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CoffeeTrip</string>
+
+    <!--fragment_recommedn text-->
+    <string name="fragment_recommend_hint">"搜索目的地、游记、故事集、用户"</string>
+    <string name="fragment_recommend_text">"附近"</string>
+
+    <!--item_recommend_dailyStory text-->
+    <string name="item_recommend_dailyStory_text">"精彩原创和专题"</string>
+
+
 </resources>

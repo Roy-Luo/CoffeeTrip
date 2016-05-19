@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -15,7 +16,6 @@ import com.roy.coffeetrip.R;
 import com.roy.coffeetrip.bean.RecommendItemBean;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ${Roy} on 16/5/12.
@@ -53,7 +53,7 @@ public class RecommendAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
           ViewHolder viewHolder = null;
         if (convertView ==null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_recommend_item,parent,false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_recommend_content,parent,false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -68,17 +68,24 @@ public class RecommendAdapter extends BaseAdapter {
         DraweeController controllerIcon = Fresco.newDraweeControllerBuilder().setUri(data.getUser().getImage()).build();
         viewHolder.backgroundSdv.setController(controllerBackground);
         viewHolder.iconSdv.setController(controllerIcon);
+        if (data.isFeatured() == true){
+            viewHolder.bestImg.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.bestImg.setVisibility(View.GONE);
+        }
 
         return convertView;
     }
     class ViewHolder{
         SimpleDraweeView backgroundSdv,iconSdv;
         TextView titleTv,dateTV;
+        ImageView bestImg;
         public ViewHolder (View itemView){
             backgroundSdv = (SimpleDraweeView) itemView.findViewById(R.id.recommend_background_sdv);
             iconSdv = (SimpleDraweeView) itemView.findViewById(R.id.recommend_icon_sdv);
             titleTv = (TextView) itemView.findViewById(R.id.recommend_title_tv);
             dateTV = (TextView) itemView.findViewById(R.id.recommend_date_tv);
+            bestImg = (ImageView) itemView.findViewById(R.id.recommend_best_img);
         }
 
     }

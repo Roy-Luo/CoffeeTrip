@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="250dp"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/hunter_gv_sdv"
+        android:layout_width="170dp"
+        android:layout_height="250dp"
+        android:layout_margin="@dimen/item_recommend_content_margin"
+        fresco:actualImageScaleType="fitXY"
+        fresco:roundedCornerRadius="@dimen/item_recommend_content_fresco_radius"
+        android:background="@mipmap/imagesix"/>
+
+    <TextView
+        android:id="@+id/hunter_gv_chinese_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="艾泽拉斯"
+        android:textSize="15dp"
+        android:textColor="@color/color_white"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        />
+    <TextView
+        android:id="@+id/hunter_gv_english_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WOW"
+        android:textSize="13sp"
+        android:textColor="@color/color_white"
+        android:layout_below="@id/hunter_gv_chinese_tv"
+        android:layout_marginLeft="20dp"
+        />
+    <TextView
+        android:id="@+id/hunter_gv_destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="旅行地"
+        android:textColor="@color/color_white"
+        android:textSize="13sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="45dp"
+        />
+    <TextView
+        android:id="@+id/hunter_gv_num_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1010"
+        android:textSize="13sp"
+        android:textColor="@color/color_white"
+        android:layout_marginLeft="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"/>
+
+
+
+</RelativeLayout>

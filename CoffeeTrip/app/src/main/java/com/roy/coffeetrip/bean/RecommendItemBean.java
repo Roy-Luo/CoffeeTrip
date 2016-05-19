@@ -5,22 +5,6 @@ package com.roy.coffeetrip.bean;
  */
 public class RecommendItemBean {
 
-    /**
-     * id : 353604
-     * name : 跨过北极圈 邂逅欧若拉——阿拉斯加
-     * photos_count : 238
-     * start_date : 2016-02-05
-     * end_date : 2016-02-13
-     * days : 9
-     * level : 4
-     * views_count : 11971
-     * comments_count : 26
-     * likes_count : 453
-     * source : app
-     * front_cover_photo_url : http://p.chanyouji.cn/1455678271/3EEBAFFD-6BDD-411A-BFD1-25E7271D6196.jpg
-     * featured : true
-     * user : {"id":385101,"name":"柯小云Queen","image":"http://tp3.sinaimg.cn/1800520654/180/5678021931/0"}
-     */
 
     private int id;
     private String name;
@@ -34,11 +18,13 @@ public class RecommendItemBean {
     private int likes_count;
     private String source;
     private String front_cover_photo_url;
+    private int serial_id;
+    private int serial_position;
     private boolean featured;
     /**
-     * id : 385101
-     * name : 柯小云Queen
-     * image : http://tp3.sinaimg.cn/1800520654/180/5678021931/0
+     * id : 25836
+     * name : 饕餮89
+     * image : http://tp3.sinaimg.cn/1856838602/180/40005314526/1
      */
 
     private UserEntity user;
@@ -137,6 +123,22 @@ public class RecommendItemBean {
 
     public void setFront_cover_photo_url(String front_cover_photo_url) {
         this.front_cover_photo_url = front_cover_photo_url;
+    }
+
+    public int getSerial_id() {
+        return serial_id;
+    }
+
+    public void setSerial_id(int serial_id) {
+        this.serial_id = serial_id;
+    }
+
+    public int getSerial_position() {
+        return serial_position;
+    }
+
+    public void setSerial_position(int serial_position) {
+        this.serial_position = serial_position;
     }
 
     public boolean isFeatured() {
