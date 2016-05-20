@@ -1,11 +1,9 @@
 package com.roy.coffeetrip.activity;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -19,39 +17,31 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.roy.coffeetrip.R;
 import com.roy.coffeetrip.adapter.RecommendContentAdapter;
-import com.roy.coffeetrip.adapter.RecommendContentHeaderAdapter;
 import com.roy.coffeetrip.base.BaseActivity;
 import com.roy.coffeetrip.bean.RecommendContentBean;
-import com.roy.coffeetrip.utill.GaussianBlurFilter;
-import com.roy.coffeetrip.utill.ProcessImageTask;
+import com.roy.coffeetrip.utill.FastBlur;
+import com.roy.coffeetrip.utill.MyImageLoader;
 import com.roy.coffeetrip.utill.VolleySingleton;
-
-import java.util.List;
 
 import it.sephiroth.android.library.picasso.Picasso;
 
 /**
- * Created by ${Roy} on 16/5/14.
+ * Created by ChenFengYao on 16/5/19.
  */
-public class RecommendContentAty extends BaseActivity implements AbsListView.OnScrollListener {
-
-    private RecommendContentBean recommendContentBean;
+public class AnotherContentAty extends BaseActivity implements AbsListView.OnScrollListener {
     private ListView mListView;
-    private ImageView headerImg;
     private RelativeLayout mListViewHeader;
     private int mActionBarSize;
     private RecommendContentAdapter mAdapter;
-    private int mMinHeaderTranslation;
-    private ProcessImageTask processImageTask;
-    private AccelerateDecelerateInterpolator mSmoothInterPolator;
     private ImageView picImg;
     private SimpleDraweeView iconSdv;
-    private TextView titleTv,dateTv;
+    private TextView titleTv, dateTv;
 
 
     @Override
@@ -61,12 +51,12 @@ public class RecommendContentAty extends BaseActivity implements AbsListView.OnS
 
     @Override
     public void initView() {
-        mSmoothInterPolator = new AccelerateDecelerateInterpolator();
+
         mListView = (ListView) findViewById(R.id.id_list_view);
-        View view = LayoutInflater.from(this).inflate(R.layout.item_content_pic,null);
+        View view = LayoutInflater.from(this).inflate(R.layout.item_content_pic, null);
         mListView.addHeaderView(view);
-        headerImg = (ImageView) view.findViewById(R.id.content_pic_img);
         picImg = (ImageView) view.findViewById(R.id.content_pic_img);
+
         iconSdv = (SimpleDraweeView) view.findViewById(R.id.content_icon_sdv);
         titleTv = (TextView) view.findViewById(R.id.content_title_tv);
         dateTv = (TextView) view.findViewById(R.id.content_date_tv);
@@ -81,28 +71,7 @@ public class RecommendContentAty extends BaseActivity implements AbsListView.OnS
 
         getActionBarSize();
         getVolleySingleton();
-        headerImg.post(new Runnable() {
-            @Override
-            public void run() {
-                // 获取滚动的最小值
-                mMinHeaderTranslation = -headerImg.getMeasuredHeight() + mActionBarSize;
-                Log.d("RecommendContentAty", "headerImg.getMeasuredHeight():--->" + headerImg.getMeasuredHeight());
-            }
-        });
 
-        // 以下代码是用来生成毛玻璃效果图，
-        // * 记住一定要异步实现，因为这个过程需要很久的时间
-        // * 而，生成毛玻璃效果的代码是国外以为大神写的，
-        // * 这里就不贴出来了，需要的可以再 github 上找到
-
-        processImageTask = new ProcessImageTask(this, new GaussianBlurFilter());
-        processImageTask.setCallBack(new ProcessImageTask.CallBack() {
-            @Override
-            public void complete(Bitmap bitmap) {
-                headerImg.setImageBitmap(bitmap);
-            }
-        });
-        processImageTask.execute();
 
     }
 
@@ -111,22 +80,35 @@ public class RecommendContentAty extends BaseActivity implements AbsListView.OnS
      */
     private void getVolleySingleton() {
         String url = getIntent().getStringExtra("url");
-        Log.d("RecommendContentAty", "url---------->"+url);
+        Log.d("RecommendContentAty", "url---------->" + url);
         VolleySingleton.addRequest(url, RecommendContentBean.class,
                 new Response.Listener<RecommendContentBean>() {
                     @Override
                     public void onResponse(RecommendContentBean response) {
                         mAdapter.setRecommendContentBean(response);
-//                        Log.d("RecommendContentAty", "response:----->" + response);
-//                        Log.d("RecommendContentAty", "------->"+response.getFront_cover_photo_url());
-//                        Log.d("RecommendContentAty", "picImg:------>" + picImg);
-//                        Log.d("RecommendContentAty", "iconSdv:" + iconSdv + titleTv + dateTv);
-//                        Log.d("RecommendContentAty", "name----->"+response.getName());
-                        Picasso.with(RecommendContentAty.this).load(response.getFront_cover_photo_url()).into(picImg);
+                      //  Picasso.with(AnotherContentAty.this).load(response.getFront_cover_photo_url()).into(picImg);
+//                        ImageLoader imageLoader = new ImageLoader(VolleySingleton.)
+                        MyImageLoader myImageLoader = VolleySingleton.getMyImageLoader();
+                        myImageLoader.get(response.getFront_cover_photo_url(), new ImageLoader.ImageListener() {
+                            @Override
+                            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                                if(response.getBitmap()!=null) {
+                                    bitmap = response.getBitmap();
+                                    Log.d("AnotherContentAty", "bitmap==null:" + (bitmap == null));
+                                    picImg.setImageBitmap(bitmap);
+                                }
+                            }
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        });
                         DraweeController controllerIcon = Fresco.newDraweeControllerBuilder().setUri(response.getUser().getImage()).build();
                         iconSdv.setController(controllerIcon);
                         titleTv.setText(response.getName());
-                        dateTv.setText(response.getStart_date()+" 丨 "+response.getPhotos_count()+"图");
+                          flag = true;
+                        dateTv.setText(response.getStart_date() + " 丨 " + response.getPhotos_count() + "图");
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -142,7 +124,7 @@ public class RecommendContentAty extends BaseActivity implements AbsListView.OnS
      */
     private void getActionBarSize() {
         TypedValue typedValue = new TypedValue();
-        getTheme().resolveAttribute(R.attr.actionBarSize,typedValue,true);
+        getTheme().resolveAttribute(R.attr.actionBarSize, typedValue, true);
         mActionBarSize = TypedValue.complexToDimensionPixelSize(typedValue.data,
                 getResources().getDisplayMetrics());
         Log.d("RecommendContentAty", "mActionBarSize:----->" + mActionBarSize);
@@ -150,40 +132,33 @@ public class RecommendContentAty extends BaseActivity implements AbsListView.OnS
 
     /**
      * ScrollListener
+     *
      * @param view
      * @param scrollState
      */
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-
     }
+
+    public boolean flag = true;
+    private Bitmap bitmap;
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         int scrollY = getScrollY();
-        headerImg.setTranslationY(Math.max(-scrollY,
-                mMinHeaderTranslation));
-        Log.v("zgy", "======mMainHeader.getTranslationX()========" + headerImg.getTranslationY());
-        float alpha = clamp(headerImg.getTranslationY() /
-                mMinHeaderTranslation, 0.0f, 1.0f);
-        Log.v("zgy", "======alpha========" + alpha);
-        float actual = clamp(1.0f - mSmoothInterPolator.getInterpolation(alpha),
-                0.0f, 1.0f);
-        headerImg.setAlpha(1.0f - actual);
-    }
-
-    /**
-     * 这个方法还是比较有用的，
-     * * @param value      * @param min      * @param max
-     * * @return
-     */
-    public static float clamp(float value, float min, float max) {
-        return Math.max(Math.min(value, max), min);
+        //picImg.setImageBitmap(FastBlur.doBlur(((BitmapDrawable) picImg.getDrawable()).getBitmap(), 2, false));
+        if (flag) {
+            bitmap = ((BitmapDrawable) picImg.getDrawable()).getBitmap();
+            flag = false;
+        }
+        clear(bitmap, picImg, scrollY / 10 + 1);
+        // bitmap.recycle();
     }
 
 
     /**
      * 获取滚动的高度,用于检测是否需要滚动
+     *
      * @return
      */
     private int getScrollY() {
@@ -194,12 +169,36 @@ public class RecommendContentAty extends BaseActivity implements AbsListView.OnS
         if (firstVisible == null) {
             return scrollY;
         }
+//            Log.d("AnotherContentAty", "mListViewHeader.getMeasuredHeight():" + mListViewHeader.getMeasuredHeight());
         if (itemNum >= 1) {
-            itemScrollY = mListViewHeader.getMeasuredHeight();
+           // itemScrollY = mListViewHeader.getMeasuredHeight();
+            itemScrollY = 0;
         }
         scrollY = itemScrollY - firstVisible.getTop();
+        Log.d("AnotherContentAty", "scrollY:" + scrollY);
         return scrollY;
     }
 
-}
+    //先缩小-再模糊,再拉伸
+    private void clear(Bitmap bkg, ImageView view, int radio) {
 
+        float scaleFactor = 5;
+        // Log.d("AnotherContentAty", "bkg.getHeight():" + bkg.getHeight());
+        // Log.d("AnotherContentAty", "bkg.getWidth():" + bkg.getWidth());
+
+        Bitmap overlay = Bitmap.createBitmap((int) (bkg.getWidth() / scaleFactor),
+                (int) (bkg.getHeight() / scaleFactor), Bitmap.Config.ARGB_4444);
+        Canvas canvas = new Canvas(overlay);
+        canvas.translate(-view.getLeft() / scaleFactor, -view.getTop() / scaleFactor);
+
+
+        canvas.scale(1 / scaleFactor, 1 / scaleFactor);
+        Paint paint = new Paint();
+        paint.setFlags(Paint.FILTER_BITMAP_FLAG);
+        canvas.drawBitmap(bkg, 0, 0, paint);
+
+        overlay = FastBlur.doBlur(overlay, radio, true);
+        view.setImageBitmap(overlay);
+
+    }
+}

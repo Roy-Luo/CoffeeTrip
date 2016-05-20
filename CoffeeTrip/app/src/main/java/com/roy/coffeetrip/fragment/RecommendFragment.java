@@ -24,6 +24,8 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.roy.coffeetrip.R;
+import com.roy.coffeetrip.activity.AnotherContentAty;
+import com.roy.coffeetrip.activity.RecommendContentAty;
 import com.roy.coffeetrip.adapter.RecommendAdapter;
 import com.roy.coffeetrip.base.BaseFragment;
 import com.roy.coffeetrip.bean.RecommendItemBean;
@@ -43,6 +45,7 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
     private ArrayList<RecommendItemBean>  itemBean;
     private RecommendAdapter recommendAdapter;
     private ListView listView;
+    private String id;
     /**************以下是轮播图***************/
     private ViewPager viewPager;
     private LinearLayout layout;
@@ -106,7 +109,7 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
                 Gson gson = new Gson();
                 itemBean = gson.fromJson(response,new TypeToken<ArrayList<RecommendItemBean>>(){}.getType());
                 recommendAdapter.setDatas(itemBean);
-                Log.d("Macaron","------>"+itemBean.size());
+
 
             }
         }, new Response.ErrorListener() {
@@ -127,7 +130,7 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
                 Type type = new TypeToken<ArrayList<RecommendRotateBean>>(){}.getType();
                 rotate = gson.fromJson(response,type);
                 myAdapter.setDatas(rotate);
-                Log.d("macaron","------>"+rotate.size());
+
                 // 添加小点
                 initPoint();
             }
@@ -153,7 +156,7 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
         viewPager.addOnPageChangeListener(this);
 
         handler.postDelayed(thread,5000);
-        Log.d("222","--->"+rotate.size());
+
 
 
 
@@ -194,10 +197,10 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
     @Override
     public void onPageSelected(int position) {
 
-        Log.d("333","--->"+rotate.size());
+
         for (int i=0;i<rotate.size();i++){
             ImageView child = (ImageView) layout.getChildAt(i);
-            Log.d("Roy","---->"+child);
+
 
             child.setImageResource(R.mipmap.point_pressed);
         }
@@ -216,10 +219,13 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
         isRotate = true;
     }
 
+    // 跳转详情界面
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        Intent intent = new Intent();
+        String url = "http://chanyouji.com/api/trips/362014.json";
+        Intent intent = new Intent(mContext, AnotherContentAty.class);
+        intent.putExtra("url",url);
+        mContext.startActivity(intent);
 
 
     }

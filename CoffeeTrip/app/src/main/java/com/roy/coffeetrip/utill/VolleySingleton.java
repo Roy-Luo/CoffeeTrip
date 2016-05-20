@@ -1,7 +1,10 @@
 package com.roy.coffeetrip.utill;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,6 +32,7 @@ public class VolleySingleton {
         mContext = MyApplication.getContext();
 
         queue = getQueue();//初始化我的请求队列
+        myImageLoader = new MyImageLoader(queue, new DoubleCache());
     }
 
 
@@ -56,6 +60,28 @@ public class VolleySingleton {
         request.setTag(tag);
         queue.add(request);
 
+    }
+    private static MyImageLoader myImageLoader;
+    public static MyImageLoader getMyImageLoader(){
+        return myImageLoader;
+    }
+
+    /**
+     * 用法同getMyImg,只是多了个参数动画渐变的时间
+     *
+     * @param path
+     * @param view
+     * @param defaultImageResId
+     * @param errorImageResId
+     */
+    public void getImg(String path, ImageView view, int defaultImageResId, int errorImageResId, int lastTime, View v) {
+
+
+        MyImageLoader.ImageListener listener = MyImageLoader.getImageListener(view,
+                defaultImageResId, errorImageResId, lastTime,v);
+
+        myImageLoader.get(path, listener);
+        //return
     }
 
 //    public void _addRequest(String url,

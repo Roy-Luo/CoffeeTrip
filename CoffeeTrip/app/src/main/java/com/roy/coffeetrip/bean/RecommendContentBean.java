@@ -396,8 +396,8 @@ public class RecommendContentBean {
             private Object comment;
             private Object tips;
             private Object entry_id;
-            private float lat;
-            private float lng;
+            private double lat;
+            private double lng;
             private Object entry_type;
             private boolean user_entry;
             private Object entry_name;
@@ -455,19 +455,19 @@ public class RecommendContentBean {
                 this.entry_id = entry_id;
             }
 
-            public float getLat() {
+            public double getLat() {
                 return lat;
             }
 
-            public void setLat(float lat) {
+            public void setLat(double lat) {
                 this.lat = lat;
             }
 
-            public float getLng() {
+            public double getLng() {
                 return lng;
             }
 
-            public void setLng(float lng) {
+            public void setLng(double lng) {
                 this.lng = lng;
             }
 

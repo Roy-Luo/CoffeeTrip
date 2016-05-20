@@ -49,7 +49,7 @@ public class HunterFragment extends BaseFragment {
                 new Response.Listener<HunterBean>() {
                     @Override
                     public void onResponse(HunterBean response) {
-                        Log.d("HunterFragment", "response:-------->" + response);
+
                         listViewAdapter.setData(response);
                     }
                 }, new Response.ErrorListener() {
