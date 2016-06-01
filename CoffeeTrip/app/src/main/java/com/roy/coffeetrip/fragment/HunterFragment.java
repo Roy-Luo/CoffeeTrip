@@ -1,18 +1,16 @@
 package com.roy.coffeetrip.fragment;
 
 
-import android.content.Context;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
-import com.roy.coffeetrip.BuildConfig;
 import com.roy.coffeetrip.R;
-import com.roy.coffeetrip.adapter.HunterListViewAdapter;
+import com.roy.coffeetrip.adapter.hunter.HunterListViewAdapter;
 import com.roy.coffeetrip.base.BaseFragment;
-import com.roy.coffeetrip.bean.HunterBean;
+import com.roy.coffeetrip.bean.hunter.HunterBean;
 import com.roy.coffeetrip.utill.VolleySingleton;
 
 import java.util.ArrayList;
@@ -28,6 +26,7 @@ public class HunterFragment extends BaseFragment {
     private ListView listView;
     private HunterListViewAdapter listViewAdapter;
     private List<HunterBean> datas;
+    private TextView title;
 
 
     @Override
@@ -39,6 +38,8 @@ public class HunterFragment extends BaseFragment {
     public void initView() {
         listView = (ListView) getView().findViewById(R.id.hunter_lv);
         listViewAdapter = new HunterListViewAdapter(mContext);
+        title = (TextView) getView().findViewById(R.id.hunter_title_tv);
+        title.setText("I'm hunter!");
     }
 
     @Override

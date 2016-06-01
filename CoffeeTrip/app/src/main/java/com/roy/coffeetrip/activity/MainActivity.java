@@ -15,6 +15,8 @@ import com.roy.coffeetrip.fragment.CustomizeFragment;
 import com.roy.coffeetrip.fragment.HunterFragment;
 import com.roy.coffeetrip.fragment.MyselfFragment;
 import com.roy.coffeetrip.fragment.RecommendFragment;
+import com.roy.coffeetrip.greendaolite.CollectionDao;
+import com.roy.coffeetrip.greendaolite.GreenDaoSingleton;
 
 /**
  * CoffeeTrip
@@ -22,13 +24,16 @@ import com.roy.coffeetrip.fragment.RecommendFragment;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RadioButton recommendBtn,hunterBtn,customizeBtn,myselfBtn;
-
+    private CollectionDao collectionDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fresco.initialize(this);
         setContentView(R.layout.activity_main);
+
+        // 数据库单例
+        collectionDao = GreenDaoSingleton.getInstance().getCollectionDao();
 
         recommendBtn = (RadioButton) findViewById(R.id.recommend_btn);
         hunterBtn = (RadioButton) findViewById(R.id.hunter_btn);
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tran.replace(R.id.recommend_frame,new CustomizeFragment());
                 break;
             case R.id.myself_btn:
+
                 tran.replace(R.id.recommend_frame,new MyselfFragment());
                 break;
         }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="15dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/hunter_content_destination_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/imagesix"
+            />
+
+        <TextView
+            android:id="@+id/hunter_content_destination_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:alpha="0.3"
+            android:background="@color/black_color"
+            android:gravity="center"
+            android:text="820 篇游记"
+            android:textColor="@color/color_white"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/hunter_content_destination_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="龙骨荒原"
+            android:textColor="@color/black_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <!--设置星级! 因为只有俩个星级图标,故只做俩个 -->
+        <!--图片设置为GONE 在java代码中,通过判断 user_score 来显示-->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <ImageView
+                android:id="@+id/hunter_content_destination_five_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_location_five_star"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/hunter_content_destination_four_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_location_four_star"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <!--lines : 代表 你的text需要几行  ellipsize: 表示省略号 -->
+        <TextView
+            android:id="@+id/hunter_content_destination_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="清水寺依山势而建的、靠数百根巨大的圆木撑起的大殿露台“清水舞台”。"
+            android:lines="2"
+            android:ellipsize="end"
+            android:textColor="@color/black_color"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

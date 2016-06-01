@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/myself_collection_img"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:src="@mipmap/imagesix"/>
+
+    <TextView
+        android:id="@+id/myself_collection_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我就是我!是颜色不一样的烟火!"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"/>
+
+
+</LinearLayout>

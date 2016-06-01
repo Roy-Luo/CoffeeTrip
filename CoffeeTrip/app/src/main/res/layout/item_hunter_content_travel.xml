@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/hunter_content_travel_pic"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/imagesix" />
+
+        <LinearLayout
+            android:id="@+id/hunter_content_travel_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_plan_time" />
+
+            <TextView
+                android:id="@+id/hunter_content_travel_day_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="7天"
+                android:textColor="@color/color_white"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_plan_sight"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/hunter_content_travel_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="128个副本"
+                android:textColor="@color/color_white"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hunter_content_travel_title_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="冰冠要塞7日游"
+            android:textColor="@color/color_white"
+            android:textSize="20sp"
+            android:layout_above="@id/hunter_content_travel_ll"
+            android:layout_margin="10dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/hunter_content_travel_introduce_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="很多玩家为了搞笑，把这个3154理解为：31分钟5人团送4个，EE果然是自己人。"
+        android:textSize="20sp"
+        android:layout_margin="15dp"/>
+
+</LinearLayout>

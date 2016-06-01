@@ -1,22 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@null">
 
-    <include layout="@layout/item_content_top"
-        android:id="@+id/top"/>
+
+    <FrameLayout
+        android:id="@+id/aty_content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:visibility="gone">
+
+
+        <RelativeLayout
+            android:id="@+id/floatGroupLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@color/color_white"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/item_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical|left"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_date_numTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:alpha="0.8"
+                android:text="2016-03-19"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+    </FrameLayout>
 
     <ListView
-        android:layout_below="@+id/top"
-        android:id="@+id/id_list_view"
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"
-        android:scrollbars="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@id/aty_content_frame">
 
+    </ListView>
+
+    <include layout="@layout/item_content_top" />
 
 </RelativeLayout>

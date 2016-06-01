@@ -2,10 +2,10 @@ package com.roy.coffeetrip.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,15 +23,16 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.roy.coffeetrip.R;
-import com.roy.coffeetrip.activity.AnotherContentAty;
-import com.roy.coffeetrip.activity.RecommendContentAty;
-import com.roy.coffeetrip.adapter.RecommendAdapter;
+import com.roy.coffeetrip.activity.recommend.AnotherContentAty;
+import com.roy.coffeetrip.adapter.recommend.RecommendAdapter;
 import com.roy.coffeetrip.base.BaseFragment;
-import com.roy.coffeetrip.bean.RecommendItemBean;
-import com.roy.coffeetrip.bean.RecommendRotateBean;
+import com.roy.coffeetrip.bean.recommend.RecommendItemBean;
+import com.roy.coffeetrip.bean.recommend.RecommendRotateBean;
 
-import java.lang.ref.ReferenceQueue;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +45,10 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
     private ArrayList<RecommendRotateBean> rotate;
     private ArrayList<RecommendItemBean>  itemBean;
     private RecommendAdapter recommendAdapter;
+    private PullToRefreshListView pullToRefreshListView;
     private ListView listView;
-    private String id;
+    private int ids;
+    private List<Integer> data ;
     /**************以下是轮播图***************/
     private ViewPager viewPager;
     private LinearLayout layout;
@@ -85,20 +88,62 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
 
     @Override
     public void initView() {
-        listView = (ListView) getView().findViewById(R.id.recommend_lv);
+        pullToRefreshListView = (PullToRefreshListView) getView().findViewById(R.id.recommend_lv);
+        listView = pullToRefreshListView.getRefreshableView();
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_recommend_recyclephoto,null);
         listView.addHeaderView(view);
         viewPager = (ViewPager) view.findViewById(R.id.recommend_vp);
         layout = (LinearLayout) view.findViewById(R.id.recommend_ll);
-        listView.setOnItemClickListener(this);
+        pullToRefreshListView.setOnItemClickListener(this);
 
+        /**
+         * 刷新 加载
+         */
+        pullToRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
+        pullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                pullToRefreshListView.onRefreshComplete();
+            }
 
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                pullToRefreshListView.onRefreshComplete();
+            }
+        });
+
+        /**
+         * 设置显示文字
+         */
+//        String str = DateUtils.formatDateTime(getContext(), System.currentTimeMillis(), DateUtils.
+//                FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+//
+//        ILoadingLayout startLabels = mPullToRefreshListView
+//                .getLoadingLayoutProxy(true, false);
+//        startLabels.setRefreshingLabel("正在刷新");
+//        startLabels.setReleaseLabel("释放开始刷新");
+//        startLabels.setLastUpdatedLabel("最后更新时间:" + str);
+//        ILoadingLayout startLabelsNext = mPullToRefreshListView
+//                .getLoadingLayoutProxy(false, true);
+//        startLabelsNext.setRefreshingLabel("正在加载");
+//        startLabelsNext.setPullLabel("上拉加载更多");
+
+        String time = DateUtils.formatDateTime(getContext(),System.currentTimeMillis(),DateUtils.FORMAT_SHOW_TIME
+                | DateUtils.FORMAT_SHOW_DATE|DateUtils.FORMAT_ABBREV_ALL);
+        ILoadingLayout startUpText = pullToRefreshListView.getLoadingLayoutProxy(true,false);
+        startUpText.setRefreshingLabel("尔等给爸爸等着!");
+        startUpText.setReleaseLabel("老子马上告诉你");
+        startUpText.setLastUpdatedLabel("倒计时 : "+ time);
+        ILoadingLayout startDownText = pullToRefreshListView.getLoadingLayoutProxy(false,true);
+        startDownText.setRefreshingLabel("尔等殿外跪候吧!");
+        startDownText.setPullLabel("上拉加载更多!你都不知道?");
     }
 
     @Override
     public void initData() {
         rotate = new ArrayList<>();
         itemBean = new ArrayList<>();
+        data = new ArrayList<>();
         /***********************解析网络数据*************************/
         RequestQueue referenceQueue = Volley.newRequestQueue(mContext);
         //https是加密的网址 在这里我们使用http保证请求的正确
@@ -109,7 +154,10 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
                 Gson gson = new Gson();
                 itemBean = gson.fromJson(response,new TypeToken<ArrayList<RecommendItemBean>>(){}.getType());
                 recommendAdapter.setDatas(itemBean);
+                for (int i=0;i<itemBean.size();i++) {
+                    ids = itemBean.get(i).getId();
 
+                }
 
             }
         }, new Response.ErrorListener() {
@@ -129,6 +177,7 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
                //解析数据
                 Type type = new TypeToken<ArrayList<RecommendRotateBean>>(){}.getType();
                 rotate = gson.fromJson(response,type);
+
                 myAdapter.setDatas(rotate);
 
                 // 添加小点
@@ -156,9 +205,6 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
         viewPager.addOnPageChangeListener(this);
 
         handler.postDelayed(thread,5000);
-
-
-
 
 
     }
@@ -222,9 +268,12 @@ public class RecommendFragment extends BaseFragment implements ViewPager.OnPageC
     // 跳转详情界面
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String url = "http://chanyouji.com/api/trips/362014.json";
+        Log.d("shabi", "------>position:" + position);
+        Log.d("2B", "itemBean.get(position).getId():" + itemBean.get(position-1).getId());
         Intent intent = new Intent(mContext, AnotherContentAty.class);
-        intent.putExtra("url",url);
+        intent.putExtra("id",itemBean.get(position-1).getId());
+
+
         mContext.startActivity(intent);
 
 

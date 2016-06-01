@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/raiders_img"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/raiders_chn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="冰冠要塞概览"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:layout_margin="10dp"
+            />
+        <TextView
+            android:id="@+id/radiders_eng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Icecrown Citadel"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:layout_toRightOf="@id/raiders_chn"
+            android:layout_marginTop="20dp"/>
+        <ImageView
+            android:id="@+id/radiders_down_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/download_destination_normal"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"/>
+    </RelativeLayout>
+
+    <include layout="@layout/item_henter_content_selector"/>
+
+</LinearLayout>

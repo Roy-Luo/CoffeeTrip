@@ -2,45 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="30dp"
-    android:orientation="horizontal"
-    >
+    android:orientation="horizontal">
+
     <LinearLayout
         android:id="@+id/content_icon_ll"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_content_top_ll_height"
+        android:background="@null"
         android:orientation="horizontal">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/back_meizu"
-        />
+        <ImageView
+            android:id="@+id/item_content_finish_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back_meizu" />
 
-    <TextView
-        android:layout_width="@dimen/item_content_top_tv_width"
-        android:layout_height="wrap_content"
-        />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/offline_b"
-        android:layout_weight="1"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/collection_b"
-        android:layout_weight="1"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/share_a_normal"
-        android:layout_weight="1"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@mipmap/comment_c"/>
+        <TextView
+            android:layout_width="@dimen/item_content_top_tv_width"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/offline_b" />
+
+        <CheckBox
+            android:id="@+id/another_collection_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@mipmap/collection_b"
+            />
+
+        <ImageView
+            android:id="@+id/annither_content_share_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/share_a_normal" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/comment_c" />
 
     </LinearLayout>
 

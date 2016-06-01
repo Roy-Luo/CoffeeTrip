@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@mipmap/recommendbackground"
         android:orientation="horizontal"
         android:padding="@dimen/activity_fragment_recommend_linearlayout_padding">
@@ -21,7 +21,8 @@
             android:background="@drawable/selector_search"
             android:hint="@string/fragment_recommend_hint"
             android:padding="@dimen/activity_fragment_recommend_edittext_padding"
-            android:textColorHint="@color/color_white" />
+            android:textColorHint="@color/color_white"
+            android:textSize="13sp"/>
 
         <TextView
             android:id="@+id/recommend_nearby_tv"
@@ -37,11 +38,11 @@
     </LinearLayout>
 
 
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/recommend_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
 
 </LinearLayout>

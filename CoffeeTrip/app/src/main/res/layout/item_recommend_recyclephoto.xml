@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:orientation="vertical">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_recommend_rotate_linearLayout_sec_height"
         android:orientation="vertical">
@@ -23,7 +23,7 @@
         </LinearLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <include layout="@layout/item_recommend_dailystory"/>
 
